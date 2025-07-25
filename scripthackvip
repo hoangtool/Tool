@@ -1,0 +1,97 @@
+--// 🔓 ZYN HUB - KEY BYPASSED 🔓
+
+-- Xoá GUI cũ nếu có
+local Babix = game.CoreGui:FindFirstChild("ThunderScreen")
+if Babix then Babix:Destroy() end
+
+-- Thông báo UI
+local TweenService = game:GetService("TweenService")
+local Balaraja = Instance.new("ScreenGui", game.CoreGui)
+Balaraja.Name = "Balaraja"
+Balaraja.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+local NotiFrame = Instance.new("Frame", Balaraja)
+NotiFrame.Name = "NotiFrame"
+NotiFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+NotiFrame.BackgroundTransparency = 1
+NotiFrame.Position = UDim2.new(0.5, 0, 0.1, 0)
+NotiFrame.Size = UDim2.new(0, 300, 0, 100)
+
+local layout = Instance.new("UIListLayout", NotiFrame)
+layout.FillDirection = Enum.FillDirection.Vertical
+layout.SortOrder = Enum.SortOrder.LayoutOrder
+layout.Padding = UDim.new(0, 5)
+
+-- Hiện thông báo
+local function Notify(title, text, delayTime)
+	local Frame = Instance.new("Frame", NotiFrame)
+	Frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+	Frame.Size = UDim2.new(0, 0, 0, 70)
+	Frame.Position = UDim2.new(0.5, 0, 0.5, 0)
+
+	local stroke = Instance.new("UIStroke", Frame)
+	stroke.Color = Color3.fromRGB(85, 170, 255)
+	stroke.Thickness = 1
+
+	local corner = Instance.new("UICorner", Frame)
+	corner.CornerRadius = UDim.new(0, 6)
+
+	local img = Instance.new("ImageLabel", Frame)
+	img.Image = "rbxassetid://11354741327"
+	img.BackgroundTransparency = 1
+	img.Position = UDim2.new(0.05, 0, 0.2, 0)
+	img.Size = UDim2.new(0, 40, 0, 40)
+
+	local titleLabel = Instance.new("TextLabel", Frame)
+	titleLabel.Text = title
+	titleLabel.Font = Enum.Font.Code
+	titleLabel.TextSize = 14
+	titleLabel.TextColor3 = Color3.fromRGB(85, 170, 255)
+	titleLabel.BackgroundTransparency = 1
+	titleLabel.Position = UDim2.new(0.25, 0, 0.15, 0)
+	titleLabel.Size = UDim2.new(0, 200, 0, 20)
+	titleLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+	local bodyLabel = Instance.new("TextLabel", Frame)
+	bodyLabel.Text = text
+	bodyLabel.Font = Enum.Font.Code
+	bodyLabel.TextSize = 12
+	bodyLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+	bodyLabel.BackgroundTransparency = 1
+	bodyLabel.Position = UDim2.new(0.25, 0, 0.55, 0)
+	bodyLabel.Size = UDim2.new(0, 200, 0, 20)
+	bodyLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+	-- Animation mở
+	Frame:TweenSize(UDim2.new(0, 250, 0, 70), "Out", "Back", 0.3, true)
+
+	-- Thanh thời gian
+	local bar = Instance.new("Frame", Frame)
+	bar.BackgroundColor3 = Color3.fromRGB(85, 170, 255)
+	bar.Position = UDim2.new(0.03, 0, 0.9, 0)
+	bar.Size = UDim2.new(0, 240, 0, 3)
+	local barCorner = Instance.new("UICorner", bar)
+	barCorner.CornerRadius = UDim.new(0, 4)
+
+	TweenService:Create(bar, TweenInfo.new(delayTime, Enum.EasingStyle.Linear), {
+		Size = UDim2.new(0, 0, 0, 3)
+	}):Play()
+
+	task.delay(delayTime, function()
+		for _, v in ipairs(Frame:GetChildren()) do
+			if v:IsA("TextLabel") or v:IsA("ImageLabel") then
+				TweenService:Create(v, TweenInfo.new(0.2), { TextTransparency = 1, ImageTransparency = 1 }):Play()
+			end
+		end
+		wait(0.2)
+		Frame:TweenSize(UDim2.new(0, 0, 0, 70), "Out", "Sine", 0.3, true)
+		wait(0.3)
+		Frame:Destroy()
+	end)
+end
+
+-- Hiện thông báo "Đang tải..."
+Notify("ZYN HUB", "Đang tải script...", 3)
+
+-- Tải script chính (KHÔNG CẦN NHẬP KEY)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Fiend1sh/FiendMain/refs/heads/main/ZynHub", true))()
